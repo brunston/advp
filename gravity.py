@@ -3,7 +3,8 @@ from scipy import stats
 import matplotlib.pyplot as plt
 np.set_printoptions(suppress=True)
 
-data = np.loadtxt("gravity.csv",delimiter=",")
+#data = np.loadtxt("gravity.csv",delimiter=",")
+data = np.loadtxt("gravity.txt")
 p, t = data[:,0], data[:,1]
 #print("p:", p)
 #print("t:", t)
