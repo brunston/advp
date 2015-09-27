@@ -1,10 +1,16 @@
 import numpy as np
 from scipy import stats
-data = np.loadtxt("gravity.txt")
-x, t = data[1:,0], data[1:,1]
+import matplotlib.pyplot as plt
 
-print("""
-mean: {0}
-stdev: {1}
-error of mean: {2}
-	""".format(np.mean(cold),stats.tstd(cold),stats.sem(cold)))
+data = np.loadtxt("gravity.txt")
+p, t = data[:,0], data[:,1]
+print("p:", p)
+print("t:", t)
+
+plt.plot(t,p, 'o', label="Position vs Time", markersize = 3)
+plt.legend()
+plt.show()
+
+A = np.vstack([t, np.ones(len(t))]).T
+ptm, ptc = np.linalg.lstsq(A, p)[0]
+print("y = {0}x + {1}".format(ptm, ptc))
