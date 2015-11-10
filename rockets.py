@@ -1,3 +1,4 @@
+#Brunston Poon (c) 2015, MIT License
 import numpy as np
 from scipy import stats
 
