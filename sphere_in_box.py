@@ -5,6 +5,9 @@ from visual import *
 #initialize *things*
 ball = sphere(pos=(-5,0,0), radius=0.5, color=color.orange)
 otheractive = True
+elastic = False
+percentage = 0.8 #percentage remaining after inelastic collision
+
 if otheractive:
     ball2 = sphere(pos=(0,2,4), radius=0.5, color=color.yellow)
     ball3 = sphere(pos=(-2,-4,3), radius=0.5, color=color.magenta)
@@ -41,24 +44,42 @@ while t < 10:
 
     if (ball.pos.x > wallR.pos.x) or (ball.pos.x < wallL.pos.x):
         ball.velocity.x = -ball.velocity.x
+        if not elastic:
+            ball.velocity.x *= percentage
     if (ball.pos.y > wallT.pos.y) or (ball.pos.y < wallB.pos.y):
         ball.velocity.y = -ball.velocity.y
+        if not elastic:
+            ball.velocity.y *= percentage
     if (ball.pos.z > 6) or (ball.pos.z < wallX.pos.z):
         ball.velocity.z = -ball.velocity.z
+        if not elastic:
+            ball.velocity.z *= percentage
     if otheractive:
         if (ball2.pos.x > wallR.pos.x) or (ball2.pos.x < wallL.pos.x):
             ball2.velocity.x = -ball2.velocity.x
+            if not elastic:
+                ball2.velocity.x *= percentage
         if (ball2.pos.y > wallT.pos.y) or (ball2.pos.y < wallB.pos.y):
             ball2.velocity.y = -ball2.velocity.y
+            if not elastic:
+                ball2.velocity.y *= percentage
         if (ball2.pos.z > 6) or (ball2.pos.z < wallX.pos.z):
             ball2.velocity.z = -ball2.velocity.z
+            if not elastic:
+                ball2.velocity.z *= percentage
 
         if (ball3.pos.x > wallR.pos.x) or (ball3.pos.x < wallL.pos.x):
             ball3.velocity.x = -ball3.velocity.x
+            if not elastic:
+                ball3.velocity.x *= percentage
         if (ball3.pos.y > wallT.pos.y) or (ball3.pos.y < wallB.pos.y):
             ball3.velocity.y = -ball3.velocity.y
+            if not elastic:
+                ball3.velocity.y *= percentage
         if (ball3.pos.z > 6) or (ball3.pos.z < wallX.pos.z):
             ball3.velocity.z = -ball3.velocity.z
+            if not elastic:
+                ball3.velocity.z *= percentage
 
     #update ball position and visualizations
     ball.pos = ball.pos + ball.velocity*dt
